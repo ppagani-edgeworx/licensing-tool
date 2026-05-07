@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M365 Licensing Review — Client Intake Form</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1C2C;
+  --navy2:#152535;
+  --navy3:#1A3347;
+  --ew-orange:#E85D04;
+  --ew-orange-l:#FFF3EC;
+  --teal:#009B86;
+  --white:#FFFFFF;
+  --ink:#0A0F14;
+  --muted:#607080;
+  --muted2:#8A9FB0;
+  --border:#D4E2EC;
+  --border2:#EEF4F8;
+  --canvas:#F4F8FB;
+  --surface:#FFFFFF;
+  --mono:'DM Mono',monospace;
+  --sans:'DM Sans',sans-serif;
+  --amber:#E8920A;
+  --amber-l:#FEF4E3;
+  --green:#1A9E6A;
+  --green-l:#E3F7EF;
+  --red:#C0392B;
+}
+
+html{ background:var(--canvas); font-family:var(--sans); color:var(--ink); font-size:15px; line-height:1.6; }
+body{ max-width:860px; margin:0 auto; padding:0 20px 60px; }
+
+/* ── MASTHEAD ── */
+.masthead{
+  background:var(--navy);
+  margin:0 -20px;
+  padding:18px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:3px solid var(--ew-orange);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.masthead img{ height:32px; width:auto; }
+.masthead-right{
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.1em;
+  color:rgba(255,255,255,.4);
+  text-align:right;
+  line-height:1.6;
+}
+.masthead-right span{ color:var(--ew-orange); display:block; margin-bottom:2px; }
+
+/* ── COVER ── */
+.cover{
+  background:var(--navy);
+  margin:0 -20px;
+  padding:48px 40px 40px;
+  position:relative;
+  overflow:hidden;
+}
+.cover::before{
+  content:'';
+  position:absolute;
+  top:-60px; right:-60px;
+  width:300px; height:300px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(232,93,4,.12) 0%, transparent 70%);
+  pointer-events:none;
+}
+.cover-eyebrow{
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.16em;
+  color:var(--ew-orange);
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+.cover-title{
+  font-size:32px;
+  font-weight:700;
+  color:var(--white);
+  line-height:1.2;
+  margin-bottom:16px;
+}
+.cover-sub{
+  font-size:14px;
+  color:rgba(255,255,255,.5);
+  max-width:560px;
+  line-height:1.7;
+}
+
+/* ── INFO BOX ── */
+.info-box{
+  background:var(--amber-l);
+  border:1px solid #F5D9A0;
+  border-radius:8px;
+  padding:14px 18px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  margin:24px 0;
+}
+.info-icon{ font-size:18px; flex-shrink:0; margin-top:1px; }
+.info-content strong{ font-size:13px; font-weight:600; color:#7A4000; display:block; margin-bottom:3px; }
+.info-content p{ font-size:13px; color:#5A3000; line-height:1.6; }
+
+/* ── PROGRESS ── */
+.progress-wrap{
+  display:flex;
+  gap:6px;
+  margin:28px 0 0;
+  padding:0 0 24px;
+  border-bottom:1px solid var(--border2);
+}
+.progress-step{
+  flex:1;
+  height:3px;
+  background:var(--border);
+  border-radius:99px;
+  transition:background .3s;
+}
+.progress-step.done{ background:var(--ew-orange); }
+.progress-step.active{ background:var(--teal); }
+
+/* ── SECTIONS ── */
+.section{ margin-top:48px; }
+.section-eyebrow{
+  font-family:var(--mono);
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.18em;
+  color:var(--ew-orange);
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.section-title{
+  font-size:20px;
+  font-weight:700;
+  color:var(--navy);
+  margin-bottom:6px;
+}
+.section-sub{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:16px;
+  line-height:1.6;
+}
+.section-rule{
+  height:2px;
+  background:linear-gradient(to right, var(--ew-orange) 120px, var(--border2) 120px);
+  border-radius:99px;
+  margin-bottom:24px;
+}
+
+/* ── FORM FIELDS ── */
+.field-group{ margin-bottom:20px; }
+.field-grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:20px;
+}
+.field-grid-3{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:16px;
+  margin-bottom:20px;
+}
+label{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  color:var(--navy);
+  margin-bottom:6px;
+}
+label .req{ color:var(--ew-orange); margin-left:3px; }
+.field-hint{
+  font-size:12px;
+  color:var(--muted2);
+  font-style:italic;
+  margin-bottom:8px;
+  margin-top:-2px;
+}
+input[type=text],input[type=email],input[type=tel],select,textarea{
+  width:100%;
+  padding:10px 12px;
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:6px;
+  font-family:var(--sans);
+  font-size:14px;
+  color:var(--ink);
+  outline:none;
+  transition:border-color .15s, box-shadow .15s;
+}
+input[type=text]:focus,input[type=email]:focus,input[type=tel]:focus,select:focus,textarea:focus{
+  border-color:var(--ew-orange);
+  box-shadow:0 0 0 3px rgba(232,93,4,.12);
+}
+input[type=text]::placeholder,textarea::placeholder{color:var(--border);}
+textarea{ resize:vertical; min-height:80px; }
+select{ appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23607080' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; padding-right:36px; }
+
+/* ── CHECKBOXES ── */
+.check-grid{
+  display:grid;
+  gap:6px;
+  margin-bottom:20px;
+}
+.check-grid.cols-2{ grid-template-columns:1fr 1fr; }
+.check-grid.cols-3{ grid-template-columns:1fr 1fr 1fr; }
+.check-grid.cols-1{ grid-template-columns:1fr; }
+.check-item{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:9px 12px;
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:6px;
+  cursor:pointer;
+  transition:border-color .12s, background .12s;
+}
+.check-item:hover{ border-color:var(--ew-orange); background:var(--ew-orange-l); }
+.check-item input[type=checkbox]{
+  width:16px; height:16px; flex-shrink:0; margin-top:1px;
+  accent-color:var(--ew-orange); cursor:pointer;
+}
+.check-item input[type=radio]{
+  width:16px; height:16px; flex-shrink:0; margin-top:1px;
+  accent-color:var(--ew-orange); cursor:pointer;
+}
+.check-item span{ font-size:13px; color:var(--ink); line-height:1.5; user-select:none; }
+.check-item.checked{ border-color:var(--ew-orange); background:var(--ew-orange-l); }
+
+/* ── LICENSE TABLE ── */
+.lic-table-wrap{ margin-bottom:20px; overflow-x:auto; }
+table.lic-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+.lic-table th{
+  background:var(--navy);
+  color:rgba(255,255,255,.8);
+  font-family:var(--mono);
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:10px 10px;
+  text-align:left;
+  white-space:nowrap;
+}
+.lic-table th.center{ text-align:center; }
+.lic-table .sec-row td{
+  background:var(--navy3);
+  color:rgba(143,160,176,.9);
+  font-family:var(--mono);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  padding:7px 10px;
+}
+.lic-table tr.lic-row:nth-child(odd) .lic-name-cell{ background:#EBF2FD; }
+.lic-table tr.lic-row:nth-child(even) .lic-name-cell{ background:#E8F8F3; }
+.lic-name-cell{
+  padding:8px 10px;
+  font-weight:600;
+  color:var(--navy);
+  width:200px;
+}
+.lic-note-cell{
+  padding:8px 10px;
+  font-size:12px;
+  color:var(--muted2);
+  font-style:italic;
+  background:var(--canvas);
+  width:180px;
+}
+.lic-qty-cell{
+  padding:4px 6px;
+  width:70px;
+  background:#EDF5FF;
+}
+.lic-qty-cell input{
+  width:100%;
+  text-align:center;
+  padding:6px 4px;
+  border:1.5px solid #B0CCF0;
+  border-radius:5px;
+  font-family:var(--mono);
+  font-size:13px;
+  font-weight:600;
+  color:#0056CC;
+  background:#EDF5FF;
+}
+.lic-qty-cell input:focus{
+  border-color:var(--ew-orange);
+  box-shadow:0 0 0 3px rgba(232,93,4,.12);
+  outline:none;
+}
+.lic-cost-cell{
+  padding:4px 6px;
+  width:100px;
+  background:var(--canvas);
+}
+.lic-cost-cell input{
+  width:100%;
+  text-align:right;
+  padding:6px 8px;
+  border:1.5px solid var(--border);
+  border-radius:5px;
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--muted);
+  background:var(--surface);
+}
+.lic-cost-cell input:focus{
+  border-color:var(--teal);
+  outline:none;
+}
+.lic-auto-cell{
+  padding:8px 10px;
+  text-align:right;
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--teal);
+  font-weight:600;
+  background:#F0FAF8;
+  width:100px;
+  white-space:nowrap;
+}
+.lic-table tfoot td{
+  background:var(--navy);
+  color:white;
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:600;
+  padding:10px 10px;
+  text-align:right;
+}
+.lic-table tfoot td.label{
+  text-align:left;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  font-size:9px;
+}
+.lic-table tfoot td.total{
+  color:var(--ew-orange);
+  font-size:14px;
+}
+
+/* ── TOTALS SUMMARY ── */
+.totals-strip{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:12px;
+  margin-bottom:24px;
+}
+.total-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px 16px;
+  text-align:center;
+}
+.total-card .label{
+  font-family:var(--mono);
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted2);
+  margin-bottom:6px;
+}
+.total-card .value{
+  font-family:var(--mono);
+  font-size:22px;
+  font-weight:700;
+  color:var(--navy);
+}
+.total-card.highlight .value{ color:var(--ew-orange); }
+
+/* ── SUBMIT / PRINT ── */
+.action-bar{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:flex-end;
+  margin-top:48px;
+  padding-top:24px;
+  border-top:1px solid var(--border2);
+}
+.btn{
+  padding:12px 24px;
+  border-radius:6px;
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.04em;
+  cursor:pointer;
+  border:none;
+  transition:all .15s;
+}
+.btn-primary{
+  background:var(--ew-orange);
+  color:white;
+}
+.btn-primary:hover{ background:#C94E00; }
+.btn-secondary{
+  background:var(--canvas);
+  color:var(--navy);
+  border:1.5px solid var(--border);
+}
+.btn-secondary:hover{ border-color:var(--navy); background:white; }
+
+/* ── CONFIDENTIAL FOOTER ── */
+.conf-footer{
+  margin-top:40px;
+  padding:20px 24px;
+  background:var(--canvas);
+  border:1px solid var(--border2);
+  border-radius:8px;
+  text-align:center;
+}
+.conf-footer strong{
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.14em;
+  color:var(--ew-orange);
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:6px;
+}
+.conf-footer p{ font-size:12px; color:var(--muted); line-height:1.6; }
+
+/* ── PRINT STYLES ── */
+@media print{
+  *{ -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+  html,body{ background:white!important; max-width:100%!important; padding:0!important; font-size:12px!important; }
+  .masthead{ position:static!important; margin:0!important; padding:12px 20px!important; }
+  .cover{ margin:0!important; padding:24px 20px!important; }
+  .cover::before{ display:none; }
+  .progress-wrap,.action-bar,.no-print{ display:none!important; }
+  .section{ margin-top:24px!important; page-break-inside:avoid; }
+  input,textarea,select{ border:1px solid #ccc!important; box-shadow:none!important; }
+  .lic-qty-cell input,.lic-cost-cell input{ border:1px solid #ccc!important; }
+  .check-item{ border:1px solid #ddd!important; padding:6px 10px!important; break-inside:avoid; }
+  .lic-table-wrap{ overflow:visible!important; }
+  .conf-footer{ page-break-inside:avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkkAAAD6CAYAAAC1QdPGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAJOgAACToAYJjBRwAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAADKGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEwOjIwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCNDAyRjA3REI4MUUxMUU2OTVBNkVERjIyOTFGNEU2MyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCNDAyRjA3RUI4MUUxMUU2OTVBNkVERjIyOTFGNEU2MyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkI0MDJGMDdCQjgxRTExRTY5NUE2RURGMjI5MUY0RTYzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkI0MDJGMDdDQjgxRTExRTY5NUE2RURGMjI5MUY0RTYzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpS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" alt="Edgeworx Solutions Inc.">
+  <div class="masthead-right">
+    <span>M365 LICENSING REVIEW</span>
+    CLIENT INTAKE FORM
+  </div>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">Microsoft 365 Licensing Review</div>
+  <div class="cover-title">Client Intake Form</div>
+  <div class="cover-sub">Complete this form so we can run your licensing analysis before your session. Most clients finish in under 10 minutes. When done, use <strong style="color:rgba(255,255,255,.7)">Print → Save as PDF</strong> and email it back to your Itlogic contact.</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div style="padding-top:8px">
+
+  <div class="info-box" style="margin-top:24px">
+    <div class="info-icon">ℹ️</div>
+    <div class="info-content">
+      <strong>What happens with this form</strong>
+      <p>We'll pre-load your data into the assessment tool and have your cost analysis and security coverage findings ready to walk through live. Information provided here is used solely for your Licensing Review — never shared or sold.</p>
+    </div>
+  </div>
+
+  <div class="progress-wrap" id="progress-bar">
+    <div class="progress-step active" id="ps1"></div>
+    <div class="progress-step" id="ps2"></div>
+    <div class="progress-step" id="ps3"></div>
+    <div class="progress-step" id="ps4"></div>
+    <div class="progress-step" id="ps5"></div>
+    <div class="progress-step" id="ps6"></div>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- SECTION 1 — ORGANIZATION          -->
+  <!-- ══════════════════════════════════ -->
+  <div class="section" id="sec1">
+    <div class="section-eyebrow">Section 1</div>
+    <div class="section-title">Organization Details</div>
+    <div class="section-sub">Basic information so we can prepare your assessment</div>
+    <div class="section-rule"></div>
+
+    <div class="field-grid-2">
+      <div>
+        <label>Organization / Company Name <span class="req">*</span></label>
+        <input type="text" name="org_name" placeholder="Acme Corp">
+      </div>
+      <div>
+        <label>Industry / Sector</label>
+        <input type="text" name="industry" placeholder="e.g. Professional Services, Healthcare">
+      </div>
+    </div>
+
+    <div class="field-grid-2">
+      <div>
+        <label>Primary Contact Name <span class="req">*</span></label>
+        <input type="text" name="contact_name" placeholder="Jane Smith">
+      </div>
+      <div>
+        <label>Job Title</label>
+        <input type="text" name="job_title" placeholder="e.g. COO, IT Manager">
+      </div>
+    </div>
+
+    <div class="field-grid-2">
+      <div>
+        <label>Email Address <span class="req">*</span></label>
+        <input type="email" name="email" placeholder="jane@company.com">
+      </div>
+      <div>
+        <label>Phone Number</label>
+        <input type="tel" name="phone" placeholder="+1 (416) 555-0100">
+      </div>
+    </div>
+
+    <div class="field-group" style="max-width:320px">
+      <label>Microsoft 365 Renewal Month (if known)</label>
+      <div class="field-hint">Helps us flag urgency relative to your upcoming renewal</div>
+      <select name="renewal_month">
+        <option value="">— Select month —</option>
+        <option>January</option><option>February</option><option>March</option>
+        <option>April</option><option>May</option><option>June</option>
+        <option>July</option><option>August</option><option>September</option>
+        <option>October</option><option>November</option><option>December</option>
+        <option>Unsure</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- SECTION 2 — HOW YOU USE M365      -->
+  <!-- ══════════════════════════════════ -->
+  <div class="section" id="sec2">
+    <div class="section-eyebrow">Section 2</div>
+    <div class="section-title">How Your Organization Uses Microsoft 365</div>
+    <div class="section-sub">Tell us which parts of the suite your team actively relies on — this shapes the analysis</div>
+    <div class="section-rule"></div>
+
+    <label>Which Microsoft 365 features does your organization actively use?</label>
+    <div class="field-hint">Select all that apply</div>
+    <div class="check-grid cols-2" style="margin-top:8px">
+      <label class="check-item"><input type="checkbox" name="use_email"><span>Email (Exchange Online)</span></label>
+      <label class="check-item"><input type="checkbox" name="use_teams"><span>Microsoft Teams (calls, chat, meetings)</span></label>
+      <label class="check-item"><input type="checkbox" name="use_sharepoint"><span>SharePoint / OneDrive (files &amp; intranet)</span></label>
+      <label class="check-item"><input type="checkbox" name="use_apps"><span>Microsoft 365 Apps (Word, Excel, PowerPoint — desktop)</span></label>
+      <label class="check-item"><input type="checkbox" name="use_intune"><span>Intune / Endpoint Management (device management)</span></label>
+      <label class="check-item"><input type="checkbox" name="use_ca"><span>Conditional Access / Sign-in Policies (Entra)</span></label>
+      <label class="check-item"><input type="checkbox" name="use_defender"><span>Defender (endpoint or email security)</span></label>
+      <label class="check-item"><input type="checkbox" name="use_purview"><span>Purview / Compliance / DLP</span></label>
+      <label class="check-item"><input type="checkbox" name="use_entra"><span>Azure AD / Entra ID (identity &amp; access)</span></label>
+      <label class="check-item"><input type="checkbox" name="use_sentinel"><span>Microsoft Sentinel (SIEM / security monitoring)</span></label>
+      <label class="check-item"><input type="checkbox" name="use_power"><span>Power Platform (Power Apps, Power Automate)</span></label>
+      <label class="check-item"><input type="checkbox" name="use_viva"><span>Microsoft Viva / HR &amp; employee experience tools</span></label>
+    </div>
+
+    <div class="field-group" style="margin-top:8px">
+      <label>Are there M365 features you believe you're paying for but not using?</label>
+      <div class="field-hint">Optional — helps identify where value may be lost</div>
+      <textarea name="unused_features" placeholder="e.g. We have Intune but nobody has set it up..."></textarea>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- SECTION 3 — LICENSE INVENTORY     -->
+  <!-- ══════════════════════════════════ -->
+  <div class="section" id="sec3">
+    <div class="section-eyebrow">Section 3</div>
+    <div class="section-title">Current License Inventory</div>
+    <div class="section-sub">Enter the quantity and cost for each license your organization currently holds. Leave blank if not applicable.</div>
+    <div class="section-rule"></div>
+
+    <div class="info-box">
+      <div class="info-icon">💡</div>
+      <div class="info-content">
+        <strong>Where to find this</strong>
+        <p>Sign in at <strong>admin.microsoft.com → Billing → Your products</strong>. Each active subscription shows quantity and price. Your CSP or reseller can also provide a current billing summary. Monthly cost per license is fine — we'll calculate totals automatically.</p>
+      </div>
+    </div>
+
+    <!-- TOTALS (auto-calculated) -->
+    <div class="totals-strip" id="totals-strip" style="margin-top:20px">
+      <div class="total-card">
+        <div class="label">Total Licensed Users</div>
+        <div class="value" id="tot-users">—</div>
+      </div>
+      <div class="total-card">
+        <div class="label">Est. Monthly Cost</div>
+        <div class="value" id="tot-mo">—</div>
+      </div>
+      <div class="total-card highlight">
+        <div class="label">Est. Annual Cost</div>
+        <div class="value" id="tot-yr">—</div>
+      </div>
+    </div>
+
+    <div class="lic-table-wrap">
+    <table class="lic-table">
+      <thead>
+        <tr>
+          <th>License / SKU</th>
+          <th>Included Features</th>
+          <th class="center">Qty</th>
+          <th class="center">Monthly Cost/User</th>
+          <th class="center">Est. Monthly Total</th>
+        </tr>
+      </thead>
+      <tbody id="lic-tbody">
+        <!-- Enterprise -->
+        <tr class="sec-row"><td colspan="5">Enterprise Licenses</td></tr>
+        <tr class="lic-row" data-tier="ent"><td class="lic-name-cell">Microsoft 365 E5</td><td class="lic-note-cell">Full security suite</td><td class="lic-qty-cell"><input type="number" name="qty_e5" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_e5" min="0" step="0.01" placeholder="60.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_e5">—</td></tr>
+        <tr class="lic-row" data-tier="ent"><td class="lic-name-cell">Microsoft 365 E3</td><td class="lic-note-cell">Core apps + compliance</td><td class="lic-qty-cell"><input type="number" name="qty_e3" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_e3" min="0" step="0.01" placeholder="39.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_e3">—</td></tr>
+        <tr class="lic-row" data-tier="ent"><td class="lic-name-cell">Office 365 E3</td><td class="lic-note-cell">Productivity only — no security</td><td class="lic-qty-cell"><input type="number" name="qty_o365e3" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_o365e3" min="0" step="0.01" placeholder="26.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_o365e3">—</td></tr>
+        <tr class="lic-row" data-tier="ent"><td class="lic-name-cell">Office 365 E1</td><td class="lic-note-cell">Web apps + email only</td><td class="lic-qty-cell"><input type="number" name="qty_e1" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_e1" min="0" step="0.01" placeholder="10.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_e1">—</td></tr>
+        <!-- Business -->
+        <tr class="sec-row"><td colspan="5">Business Licenses (≤300 users per tenant)</td></tr>
+        <tr class="lic-row" data-tier="biz"><td class="lic-name-cell">M365 Business Premium</td><td class="lic-note-cell">Security + Intune + CA + MDO P1</td><td class="lic-qty-cell"><input type="number" name="qty_bp" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_bp" min="0" step="0.01" placeholder="22.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_bp">—</td></tr>
+        <tr class="lic-row" data-tier="biz"><td class="lic-name-cell">M365 Business Standard</td><td class="lic-note-cell">Apps + Teams (no security)</td><td class="lic-qty-cell"><input type="number" name="qty_bs" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_bs" min="0" step="0.01" placeholder="14.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_bs">—</td></tr>
+        <tr class="lic-row" data-tier="biz"><td class="lic-name-cell">M365 Business Basic</td><td class="lic-note-cell">Web apps only (no security)</td><td class="lic-qty-cell"><input type="number" name="qty_bb" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_bb" min="0" step="0.01" placeholder="7.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_bb">—</td></tr>
+        <!-- Frontline -->
+        <tr class="sec-row"><td colspan="5">Frontline Licenses</td></tr>
+        <tr class="lic-row" data-tier="fl"><td class="lic-name-cell">M365 F3</td><td class="lic-note-cell">Desktop apps + Intune</td><td class="lic-qty-cell"><input type="number" name="qty_f3" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_f3" min="0" step="0.01" placeholder="10.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_f3">—</td></tr>
+        <tr class="lic-row" data-tier="fl"><td class="lic-name-cell">M365 F1</td><td class="lic-note-cell">Web only — no security features</td><td class="lic-qty-cell"><input type="number" name="qty_f1" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_f1" min="0" step="0.01" placeholder="2.25" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_f1">—</td></tr>
+        <!-- Add-ons -->
+        <tr class="sec-row"><td colspan="5">Security Add-ons</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">Entra ID P1</td><td class="lic-note-cell">Conditional Access — incl. E3/BP/E5</td><td class="lic-qty-cell"><input type="number" name="qty_enp1" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_enp1" min="0" step="0.01" placeholder="6.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_enp1">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">Entra ID P2</td><td class="lic-note-cell">Identity Protection, PIM — incl. E5</td><td class="lic-qty-cell"><input type="number" name="qty_enp2" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_enp2" min="0" step="0.01" placeholder="9.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_enp2">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">Defender for Business</td><td class="lic-note-cell">SMB endpoint — ≤300 users, incl. BP</td><td class="lic-qty-cell"><input type="number" name="qty_dfb" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_dfb" min="0" step="0.01" placeholder="3.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_dfb">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">Defender Endpoint P1</td><td class="lic-note-cell">Next-gen AV + ASR</td><td class="lic-qty-cell"><input type="number" name="qty_dep1" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_dep1" min="0" step="0.01" placeholder="3.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_dep1">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">Defender Endpoint P2</td><td class="lic-note-cell">EDR + threat analytics — incl. E5</td><td class="lic-qty-cell"><input type="number" name="qty_dep2" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_dep2" min="0" step="0.01" placeholder="5.20" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_dep2">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">MDO Plan 1</td><td class="lic-note-cell">Safe Links, Attachments — incl. E3/BP</td><td class="lic-qty-cell"><input type="number" name="qty_mdo1" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_mdo1" min="0" step="0.01" placeholder="2.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_mdo1">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">MDO Plan 2</td><td class="lic-note-cell">Threat Explorer, AIR — incl. E5</td><td class="lic-qty-cell"><input type="number" name="qty_mdo2" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_mdo2" min="0" step="0.01" placeholder="5.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_mdo2">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">Intune Plan 1</td><td class="lic-note-cell">MDM / MAM — incl. E3/BP/E5</td><td class="lic-qty-cell"><input type="number" name="qty_intune" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_intune" min="0" step="0.01" placeholder="8.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_intune">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">Intune Plan 2</td><td class="lic-note-cell">Advanced endpoint mgmt — incl. E5</td><td class="lic-qty-cell"><input type="number" name="qty_intune2" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_intune2" min="0" step="0.01" placeholder="4.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_intune2">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">Defender for Cloud Apps</td><td class="lic-note-cell">CASB — shadow IT — incl. E5</td><td class="lic-qty-cell"><input type="number" name="qty_mdca" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_mdca" min="0" step="0.01" placeholder="3.50" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_mdca">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">Defender for Identity</td><td class="lic-note-cell">On-prem AD detection — incl. E5</td><td class="lic-qty-cell"><input type="number" name="qty_mdi" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_mdi" min="0" step="0.01" placeholder="3.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_mdi">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">Purview Compliance</td><td class="lic-note-cell">DLP, Insider Risk, eDiscovery</td><td class="lic-qty-cell"><input type="number" name="qty_purv" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_purv" min="0" step="0.01" placeholder="10.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_purv">—</td></tr>
+        <tr class="lic-row" data-tier="add"><td class="lic-name-cell">Microsoft Sentinel</td><td class="lic-note-cell">SIEM / SOAR — consumption-based</td><td class="lic-qty-cell"><input type="number" name="qty_sentinel" min="0" value="" placeholder="0" oninput="recalc()"></td><td class="lic-cost-cell"><input type="number" name="cost_sentinel" min="0" step="0.01" placeholder="0.00" oninput="recalc()"></td><td class="lic-auto-cell" id="auto_sentinel">—</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="field-group" style="margin-top:16px">
+      <label>Other licenses not listed above</label>
+      <textarea name="other_licenses" placeholder="License name and quantity, e.g. Azure AD Premium P2 — 50 users"></textarea>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- SECTION 4 — USERS & ROLES         -->
+  <!-- ══════════════════════════════════ -->
+  <div class="section" id="sec4">
+    <div class="section-eyebrow">Section 4</div>
+    <div class="section-title">User Base &amp; Roles</div>
+    <div class="section-sub">Helps us identify whether your license mix is aligned with how your workforce is structured</div>
+    <div class="section-rule"></div>
+
+    <div class="field-grid-2">
+      <div>
+        <label>Total number of employees / users <span class="req">*</span></label>
+        <input type="text" name="total_users" placeholder="e.g. 150">
+      </div>
+      <div>
+        <label>Number of IT / admin staff</label>
+        <input type="text" name="it_staff" placeholder="e.g. 3">
+      </div>
+    </div>
+
+    <label>How would you describe your user population?</label>
+    <div class="field-hint">Approximate is fine</div>
+    <div class="check-grid cols-2" style="margin-top:8px;margin-bottom:20px">
+      <label class="check-item"><input type="radio" name="user_type" value="office"><span>Primarily office / knowledge workers</span></label>
+      <label class="check-item"><input type="radio" name="user_type" value="mixed"><span>Mix of office and field / frontline workers</span></label>
+      <label class="check-item"><input type="radio" name="user_type" value="frontline"><span>Primarily frontline / deskless workers</span></label>
+      <label class="check-item"><input type="radio" name="user_type" value="contractors"><span>Significant contractor or guest user population</span></label>
+    </div>
+
+    <label>Do you currently have users on different license tiers?</label>
+    <div class="check-grid cols-2" style="margin-top:8px">
+      <label class="check-item"><input type="radio" name="tiering" value="yes_intent"><span>Yes — intentional tiering by role</span></label>
+      <label class="check-item"><input type="radio" name="tiering" value="yes_unplan"><span>Yes — but it wasn't planned / we're unsure</span></label>
+      <label class="check-item"><input type="radio" name="tiering" value="no"><span>No — everyone is on the same license</span></label>
+      <label class="check-item"><input type="radio" name="tiering" value="unsure"><span>Unsure</span></label>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- SECTION 5 — SECURITY POSTURE      -->
+  <!-- ══════════════════════════════════ -->
+  <div class="section" id="sec5">
+    <div class="section-eyebrow">Section 5</div>
+    <div class="section-title">Security Posture</div>
+    <div class="section-sub">A few quick questions to frame the security findings — no technical detail required</div>
+    <div class="section-rule"></div>
+
+    <label>How would you describe your current M365 security confidence?</label>
+    <div class="check-grid cols-1" style="margin-top:8px;margin-bottom:20px">
+      <label class="check-item"><input type="radio" name="sec_conf" value="high"><span>We have actively configured and tested our security settings</span></label>
+      <label class="check-item"><input type="radio" name="sec_conf" value="med"><span>Security is set up but has not been reviewed recently</span></label>
+      <label class="check-item"><input type="radio" name="sec_conf" value="low"><span>We rely on defaults and have not made many changes</span></label>
+      <label class="check-item"><input type="radio" name="sec_conf" value="none"><span>We are honestly not sure what is configured</span></label>
+    </div>
+
+    <label>Have you experienced any security incidents in the past 24 months?</label>
+    <div class="field-hint">Phishing, compromised accounts, ransomware, data loss, etc.</div>
+    <div class="check-grid cols-3" style="margin-top:8px;margin-bottom:20px">
+      <label class="check-item"><input type="radio" name="incidents" value="yes"><span>Yes</span></label>
+      <label class="check-item"><input type="radio" name="incidents" value="no"><span>No</span></label>
+      <label class="check-item"><input type="radio" name="incidents" value="pnts"><span>Prefer not to say</span></label>
+    </div>
+
+    <label>Which security areas concern you most?</label>
+    <div class="field-hint">Select all that apply</div>
+    <div class="check-grid cols-2" style="margin-top:8px">
+      <label class="check-item"><input type="checkbox" name="concern_identity"><span>Identity — compromised or stolen credentials</span></label>
+      <label class="check-item"><input type="checkbox" name="concern_endpoint"><span>Endpoint — device-level threats and malware</span></label>
+      <label class="check-item"><input type="checkbox" name="concern_email"><span>Email — phishing and malicious attachments</span></label>
+      <label class="check-item"><input type="checkbox" name="concern_data"><span>Data — unauthorized access to files or sensitive information</span></label>
+      <label class="check-item"><input type="checkbox" name="concern_compliance"><span>Compliance and data governance requirements</span></label>
+      <label class="check-item"><input type="checkbox" name="concern_visibility"><span>Visibility — no clear insight into what's happening</span></label>
+      <label class="check-item"><input type="checkbox" name="concern_ransomware"><span>Ransomware or business continuity risk</span></label>
+      <label class="check-item"><input type="checkbox" name="concern_insider"><span>Insider risk or accidental data exposure</span></label>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- SECTION 6 — GOALS                 -->
+  <!-- ══════════════════════════════════ -->
+  <div class="section" id="sec6">
+    <div class="section-eyebrow">Section 6</div>
+    <div class="section-title">Goals &amp; Context</div>
+    <div class="section-sub">Helps us focus the analysis on what matters most to you</div>
+    <div class="section-rule"></div>
+
+    <label>What is the primary reason for requesting this review?</label>
+    <div class="check-grid cols-2" style="margin-top:8px;margin-bottom:20px">
+      <label class="check-item"><input type="radio" name="reason" value="renewal"><span>Upcoming renewal — want to validate current spend</span></label>
+      <label class="check-item"><input type="radio" name="reason" value="overpay"><span>Concerned we are overpaying for underused licenses</span></label>
+      <label class="check-item"><input type="radio" name="reason" value="security"><span>Want to understand our security coverage gaps</span></label>
+      <label class="check-item"><input type="radio" name="reason" value="board"><span>Board or leadership asking about M365 security posture</span></label>
+      <label class="check-item"><input type="radio" name="reason" value="incident"><span>A recent incident prompted a review</span></label>
+      <label class="check-item"><input type="radio" name="reason" value="diligence"><span>General due diligence / best practice check</span></label>
+    </div>
+
+    <label>Is there a cost reduction target for this exercise?</label>
+    <div class="check-grid cols-1" style="margin-top:8px;margin-bottom:20px">
+      <label class="check-item"><input type="radio" name="cost_goal" value="reduce"><span>Yes — we need to reduce M365 spend</span></label>
+      <label class="check-item"><input type="radio" name="cost_goal" value="neutral"><span>Neutral — just want the right mix for our needs</span></label>
+      <label class="check-item"><input type="radio" name="cost_goal" value="invest"><span>No — we would invest more if it meaningfully improves security</span></label>
+    </div>
+
+    <div class="field-group">
+      <label>Anything else we should know before the session?</label>
+      <div class="field-hint">Recent changes, upcoming projects, constraints, or specific concerns</div>
+      <textarea name="notes" rows="4" placeholder="e.g. We're migrating from on-prem AD in Q3, or We have a compliance audit coming up..."></textarea>
+    </div>
+  </div>
+
+  <!-- ACTION BAR -->
+  <div class="action-bar no-print">
+    <span style="font-size:12px;color:var(--muted);font-family:var(--mono)">When complete:</span>
+    <button class="btn btn-secondary" onclick="window.print()">🖨 Print / Save as PDF</button>
+    <button class="btn btn-primary" onclick="handlePrint()">✓ Review &amp; Print</button>
+  </div>
+
+  <!-- CONFIDENTIAL FOOTER -->
+  <div class="conf-footer" style="margin-top:24px">
+    <strong>Proprietary &amp; Confidential — Edgeworx Solutions Inc.</strong>
+    <p>Information provided on this form is used solely to conduct your Microsoft 365 Licensing Review. It will not be shared, sold, or used for any other purpose. Edgeworx Solutions Inc. is not a Microsoft reseller and has no commercial interest in the licensing outcome. · itlogics.ca</p>
+  </div>
+
+</div><!-- /main content -->
+
+<script>
+// ── CHECK ITEM TOGGLE STYLE ──
+document.querySelectorAll('.check-item').forEach(item => {
+  const input = item.querySelector('input');
+  if (!input) return;
+  input.addEventListener('change', () => {
+    if (input.type === 'radio') {
+      // Uncheck siblings in same group
+      document.querySelectorAll(`input[name="${input.name}"]`).forEach(r => {
+        r.closest('.check-item')?.classList.toggle('checked', r.checked);
+      });
+    } else {
+      item.classList.toggle('checked', input.checked);
+    }
+  });
+});
+
+// ── PROGRESS BAR ──
+function updateProgress() {
+  const sections = ['sec1','sec2','sec3','sec4','sec5','sec6'];
+  sections.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const inputs = el.querySelectorAll('input, textarea, select');
+    let filled = 0;
+    inputs.forEach(inp => {
+      if (inp.type === 'checkbox' || inp.type === 'radio') {
+        if (inp.checked) filled++;
+      } else if (inp.value && inp.value.trim()) filled++;
+    });
+    const pct = filled / Math.max(inputs.length, 1);
+    const step = document.getElementById(`ps${i+1}`);
+    if (step) {
+      step.className = 'progress-step' + (pct >= 0.3 ? ' done' : '');
+    }
+  });
+}
+document.querySelectorAll('input,textarea,select').forEach(el => {
+  el.addEventListener('change', updateProgress);
+  el.addEventListener('input', updateProgress);
+});
+
+// ── LICENSE TABLE RECALC ──
+const LICS = ['e5','e3','o365e3','e1','bp','bs','bb','f3','f1',
+              'enp1','enp2','dfb','dep1','dep2','mdo1','mdo2',
+              'intune','intune2','mdca','mdi','purv','sentinel'];
+const NON_ADDON = ['e5','e3','o365e3','e1','bp','bs','bb','f3','f1'];
+
+function fmtMoney(n) {
+  if (!n || n === 0) return '—';
+  return '$' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+
+function recalc() {
+  let totalMo = 0, totalUsers = 0;
+  LICS.forEach(k => {
+    const qEl = document.querySelector(`input[name="qty_${k}"]`);
+    const cEl = document.querySelector(`input[name="cost_${k}"]`);
+    const aEl = document.getElementById(`auto_${k}`);
+    if (!qEl || !cEl || !aEl) return;
+    const qty  = parseFloat(qEl.value)  || 0;
+    const cost = parseFloat(cEl.value)  || 0;
+    const mo   = qty * cost;
+    aEl.textContent = mo > 0 ? fmtMoney(mo) : '—';
+    totalMo += mo;
+    if (NON_ADDON.includes(k)) totalUsers += qty;
+  });
+
+  const tu = document.getElementById('tot-users');
+  const tm = document.getElementById('tot-mo');
+  const ty = document.getElementById('tot-yr');
+  if (tu) tu.textContent = totalUsers > 0 ? totalUsers.toLocaleString() : '—';
+  if (tm) tm.textContent = totalMo > 0 ? fmtMoney(totalMo) : '—';
+  if (ty) ty.textContent = totalMo > 0 ? fmtMoney(totalMo * 12) : '—';
+  updateProgress();
+}
+
+// ── PRINT HANDLER ──
+function handlePrint() {
+  const org = document.querySelector('input[name="org_name"]')?.value;
+  if (!org) {
+    if (!confirm('Organization name is empty. Print anyway?')) return;
+  }
+  window.print();
+}
+</script>
+</body>
+</html>
